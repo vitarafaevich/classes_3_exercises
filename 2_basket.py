@@ -5,14 +5,13 @@ class Basket:
     Class representing a marketplace basket
     """
     all_stuff = {}
+
     def __init__(self):
         self.__base = []
-
 
     @property
     def base(self):
         return self.__base
-
 
     @base.setter
     def base(self, new):
@@ -22,7 +21,6 @@ class Basket:
         else:
             if new in Basket.all_stuff:
                 self.__base.append(new)
-
 
     @classmethod
     def product_info(cls, file):
@@ -35,19 +33,15 @@ class Basket:
             #for item in Basket.all_stuff:
                 #print(item)
 
-
     def add_product(self, product):
         self.base = product
-
 
     def remove_product(self, product):
         self.base = ('rem' + product)
 
-
     def show(self):
         for elem in self.__base:
             print(elem, *Basket.all_stuff[elem])
-
 
     def price(self):
         amount, place = 0, 0
@@ -57,14 +51,11 @@ class Basket:
                 amount += int(self.all_stuff[item][place])
         print(amount)
 
-
     @classmethod
     def assortment(cls):
         for key in cls.all_stuff:
             #print(key)
             print(key, *cls.all_stuff[key])
-
-
 
 
 class Product:
@@ -82,31 +73,24 @@ class Product:
         else:
             self.country = ''
 
-
     @property
     def name(self):
         return self.__name
-
 
     @property
     def code(self):
         return self.__code
 
-
     @property
     def info(self):
         return self.__info
-
 
     @property
     def price(self):
         return self.__price
 
-
     def __repr__(self):
         return [self.__name, self.__code, self.country, self.__info, self.__price]
-
-
 
 
 class ShopManaging:
@@ -169,8 +153,6 @@ class ShopManaging:
                 request = input('Enter your request: ')
 
         print('Have a nice day!')
-
-
 
 
 ShopManaging.user()
