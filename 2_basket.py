@@ -5,14 +5,14 @@ class Basket:
     Class representing a marketplace basket
     """
     all_stuff = {}
-
-
     def __init__(self):
         self.__base = []
+
 
     @property
     def base(self):
         return self.__base
+
 
     @base.setter
     def base(self, new):
@@ -22,6 +22,7 @@ class Basket:
         else:
             if new in Basket.all_stuff:
                 self.__base.append(new)
+
 
     @classmethod
     def product_info(cls, file):
@@ -64,11 +65,12 @@ class Basket:
             print(key, *cls.all_stuff[key])
 
 
+
+
 class Product:
     """
     Class representing a product in the basket (its name and country based on ean-13 code)
     """
-
     def __init__(self, name, code, info, price):
         self.__name = name
         self.__code = code
@@ -85,20 +87,25 @@ class Product:
     def name(self):
         return self.__name
 
+
     @property
     def code(self):
         return self.__code
+
 
     @property
     def info(self):
         return self.__info
 
+
     @property
     def price(self):
         return self.__price
 
+
     def __repr__(self):
         return [self.__name, self.__code, self.country, self.__info, self.__price]
+
 
 
 
@@ -117,10 +124,8 @@ class ShopManaging:
                        f'To see what\'s currently in the cart enter 4\n'
                        f'To check the price of the items in the cart enter 5\n'
                        f'To exit enter 0\n')
-
         print(greeting, interaction)
         request = input('Enter your request: ')
-
 
         while request != '0':
             if request == 'file':
@@ -165,7 +170,7 @@ class ShopManaging:
 
         print('Have a nice day!')
 
-#Basket.product_info('production_data.txt')
+
+
 
 ShopManaging.user()
-
