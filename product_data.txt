@@ -1,5 +1,5 @@
-name product; 605123456789; info about product; 345
-nm product; 605123456789; info about product; 456
+a; 605123456789; info about product; 345
+b; 605123456789; info about product; 456
 Apple iPhone 14; 001234567890; 128GB, Midnight; 999
 Samsung Galaxy S22; 012345678901; 256GB, Phantom Black; 799
 Sony WH-1000XM4; 500123456789; Wireless Noise-Canceling Headphones; 349
