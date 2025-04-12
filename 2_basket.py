@@ -102,7 +102,7 @@ class Product:
 
 
 
-class Shop_managing:
+class ShopManaging:
     @staticmethod
     def user():
         basket = Basket()
@@ -167,5 +167,5 @@ class Shop_managing:
 
 #Basket.product_info('production_data.txt')
 
-Shop_managing.user()
+ShopManaging.user()
 
