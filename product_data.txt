@@ -1,2 +1,47 @@
 name product; 605123456789; info about product; 345
-name product; 605123456789; info about product; 456
+nm product; 605123456789; info about product; 456
+Apple iPhone 14; 001234567890; 128GB, Midnight; 999
+Samsung Galaxy S22; 012345678901; 256GB, Phantom Black; 799
+Sony WH-1000XM4; 500123456789; Wireless Noise-Canceling Headphones; 349
+Nikon D5600; 400123456789; 24.2MP DSLR Camera; 649
+Dell XPS 13; 300123456789; 13.4" FHD, Intel i7; 1299
+Bose QuietComfort 35 II; 800123456789; Wireless Noise-Canceling Headphones; 299
+Apple MacBook Pro; 840123456789; 16-inch, M1 Pro, 512GB; 2399
+Fitbit Charge 5; 450123456789; Fitness and Health Tracker; 179
+LG OLED55CXPUA; 930123456789; 55" 4K Smart OLED TV; 1399
+Microsoft Surface Pro 8; 940123456789; 13" Touchscreen, Intel i5; 1099
+Canon EOS Rebel T7; 690123456789; 24.1MP DSLR Camera; 449
+GoPro HERO10; 789123456789; Waterproof Action Camera; 399
+Samsung Galaxy Tab S8; 750123456789; 11" Tablet, 128GB; 699
+Apple AirPods Pro; 880123456789; Wireless Earbuds; 249
+Amazon Kindle Paperwhite; 890123456789; 8GB, Waterproof; 139
+Sony PlayStation 5; 870123456789; Next-Gen Gaming Console; 499
+Nintendo Switch; 730123456789; Hybrid Gaming Console; 299
+Microsoft Xbox Series X; 640123456789; Next-Gen Gaming Console; 499
+Oculus Quest 2; 570123456789; All-in-One VR Headset; 299
+Razer Blade 15; 700123456789; Gaming Laptop, Intel i7; 1999
+ASUS ROG Strix G15; 760123456789; Gaming Laptop, AMD Ryzen; 1599
+Samsung Galaxy Buds Pro; 590123456789; Wireless Earbuds; 199
+Anker PowerCore 20100; 859123456789; Portable Charger; 49
+JBL Flip 5; 858123456789; Waterproof Bluetooth Speaker; 99
+Logitech MX Master 3; 540123456789; Wireless Mouse; 99
+Apple Watch Series 7; 900123456789; 41mm GPS, Midnight; 399
+Dyson V11 Torque Drive; 560123456789; Cordless Vacuum Cleaner; 599
+Instant Pot Duo 7-in-1; 460123456789; Electric Pressure Cooker; 89
+Nespresso VertuoPlus; 869123456789; Coffee and Espresso Maker; 179
+Philips Hue Smart Bulb; 888123456789; White and Color Ambiance; 49
+Fitbit Versa 3; 539123456789; Smartwatch with GPS; 229
+Garmin Forerunner 245; 520123456789; GPS Running Watch; 349
+Sony A7 III; 569123456789; Full-Frame Mirrorless Camera; 1999
+Nest Learning Thermostat; 999123456789; Smart Thermostat; 249
+iRobot Roomba 694; 610123456789; Robot Vacuum; 299
+Ring Video Doorbell; 621123456789; Smart Doorbell Camera; 199
+Apple iPad Air; 629123456789; 10.9", 64GB, Wi-Fi; 599
+Bose SoundLink Revolve; 893123456789; Portable Bluetooth Speaker; 199
+Beats Studio3; 480123456789; Wireless Noise-Canceling Headphones; 349
+Samsung QLED 65" TV; 999123456789; 4K Smart TV; 1499
+TCL 50S425; 569123456789; 50" 4K Smart TV; 399
+HP Envy x360; 460123456789; 15.6" Touchscreen Laptop; 899
+Lenovo IdeaPad 3; 800123456789; 15.6" Laptop, Ryzen 5; 549
+Acer Aspire 5; 300123456789; 15.6" Laptop, Intel i5; 499
+Roku Streaming Stick 4K; 400123456789; 4K Streaming Device; 49
