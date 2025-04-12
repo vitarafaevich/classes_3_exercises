@@ -29,7 +29,7 @@ class Basket:
             for line in f:
                 name, code, info, price = line.strip().split('; ')
                 result = Product(name, code.strip(), info, price)
-                #calling the class and its atribute all_stuff. key - name of the product, value - other info. price has ind 4
+                #calling the class and its attribute all_stuff. key - name of the product, value - other info. price has ind 4
                 cls.all_stuff[result.name] = [result.code, result.country, result.info, result.price]
             #for item in Basket.all_stuff:
                 #print(item)
