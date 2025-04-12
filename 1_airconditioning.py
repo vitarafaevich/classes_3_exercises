@@ -6,11 +6,9 @@ class AirConditioning:
     max_temp = 43
     base_temp = 18
 
-
     def __init__(self, status = False, temperature = None):
          self.__status = status
          self.__temperature = temperature
-
 
     def __str__(self):
         if self.__status is True:
@@ -18,11 +16,9 @@ class AirConditioning:
         else:
             return f'Conditioner is off.'
 
-
     @property
     def status(self):
         return self.__status
-
 
     @status.setter
     def status(self, stat):
@@ -35,11 +31,9 @@ class AirConditioning:
             if stat[1] is True:
                 self.__status = stat[0]
 
-
     @property
     def temperature(self):
         return self.__temperature
-
 
     @temperature.setter
     def temperature(self, temp):
@@ -52,7 +46,6 @@ class AirConditioning:
             if temp[1] is True:
                 self.__temperature = temp[0]
 
-
     def switch_on(self):
         """
         Method switch_on(self): to switch the conditioner on, unable while conditioner is on
@@ -60,7 +53,6 @@ class AirConditioning:
         if self.__status is False:
             self.status = (True, True)
             self.temperature = (self.base_temp, True)
-
 
     def switch_off(self):
         """
@@ -70,7 +62,6 @@ class AirConditioning:
             self.status = (False, True)
             self.temperature = (None, True)
 
-
     def reset(self):
         """
         Method reset(self): to reset condition to base settings
@@ -79,14 +70,12 @@ class AirConditioning:
             self.status = (True, True)
             self.temperature = (self.base_temp, True)
 
-
     def get_temperature(self):
         """
         Method get_temperature(self): to get current temperature on the conditioner
         """
         if self.__status is True:
             return self.__temperature
-
 
     def raise_temperature(self):
         """
@@ -95,7 +84,6 @@ class AirConditioning:
         if self.__status is True and self.__temperature is not None:
             if self.__temperature < self.max_temp:
                 self.temperature = (self.__temperature + 1, True)
-
 
     def lower_temperature(self):
         """
@@ -144,4 +132,3 @@ for _ in range(5):
 print(conditioning)
 conditioning.switch_off()
 print(conditioning)
-
