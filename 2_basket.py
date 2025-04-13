@@ -24,6 +24,11 @@ class Basket:
 
     @classmethod
     def product_info(cls, file):
+        """
+        Static method product_info(cls, file): to read the information from the file
+        :param cls: referring to current class
+        :param file: the name of the file where data is stored
+        """
         with open(file, 'r', encoding='utf8') as f:
             for line in f:
                 name, code, info, price = line.strip().split('; ')
@@ -34,16 +39,30 @@ class Basket:
                 #print(item)
 
     def add_product(self, product):
+        """
+        Method add_product(self, product): to add the product in the cart
+        :param product: the current product we are working with
+        """
         self.base = product
 
     def remove_product(self, product):
+        """
+        Method remove_product(self, product): to remove the product from the cart
+        :param product: the current product we are working with
+        """
         self.base = ('rem' + product)
 
     def show(self):
+        """
+        Method show(self): to show what items are currently in the cart
+        """
         for elem in self.__base:
             print(elem, *Basket.all_stuff[elem])
 
     def price(self):
+        """
+        Method show(self): to show the total cost of items in the cart
+        """
         amount, place = 0, 0
         for item in self.base:
             if item in self.all_stuff:
@@ -53,6 +72,10 @@ class Basket:
 
     @classmethod
     def assortment(cls):
+        """
+        Class method assortment(cls): to show the assortment from the data file
+        :param cls: referring to current class
+        """
         for key in cls.all_stuff:
             #print(key)
             print(key, *cls.all_stuff[key])
@@ -94,8 +117,14 @@ class Product:
 
 
 class ShopManaging:
+    """
+    Class representing a Shopping Management tools such as menu
+    """
     @staticmethod
     def user():
+        """
+        Method user(): menu for user
+        """
         basket = Basket()
         greeting = f'Hi, welcome to our shop!\n'
         interaction = (f'\n'
