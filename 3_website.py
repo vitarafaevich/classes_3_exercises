@@ -7,6 +7,9 @@
 """
 import datetime
 import time
+from tkinter import *
+from tkinter import filedialog
+from pygame import mixer
 
 
 class Album:
@@ -50,6 +53,21 @@ class Album:
 
             #defeat None in playing
             if not playing:
+                '''
+                print(f'Starting to play composition {name}...')
+                track_info['playing'] = True
+                #track is still playing
+                while not track_info['end'] == True and track_info['playing'] == True:
+                    time.sleep(1)
+                    played_time += 1
+                    track_info['played_time'] = played_time
+                    print(f'Playing some musiiiic for... {played_time} seconds')
+                if track_info['end'] == True:
+                    print(f'Composition {name} is now over!')
+                    track_info['playing'] = False
+                    track_info['end'] = True
+                '''
+
                 print(f'Starting to play composition {name} by {singer}')
                 track_info['playing'] = True
                 track_info['start_time'] = datetime.datetime.now()
@@ -63,6 +81,7 @@ class Album:
                 print(f'Composition {name} is now over!')
                 track_info['playing'] = False
                 track_info['end'] = True
+
             else:
                 print(f'Composition {name} is already playing. Did\'nt u hear it? :)')
         else:
@@ -70,7 +89,7 @@ class Album:
 
     def pause(self, name):
         """
-        Method play(self, name): to pause the composition
+        Method pause(self, name): to pause the composition
         :param name: the name of the composition
         """
         if name in self.album_tuple:
@@ -124,11 +143,299 @@ class Track:
     def __repr__(self):
         return f"{self.name} - {self.singer} ({self.year})"
 
+album = Album()
+album.album_info('music.txt')
+album.play('aura')
+time.sleep(5)
+album.pause('aura')
+album.play('riders')
+
+#time.sleep(2)
+#album.resume('aura')
+
+
+'''
+class MusicPlayer:
+    def __init__(self, window ):
+        window.geometry('320x100'); window.title('Iris Player'); window.resizable(0,0)
+        Load = Button(window, text = 'Load',  width = 10, font = ('Times', 10), command = self.load)
+        Play = Button(window, text = 'Play',  width = 10,font = ('Times', 10), command = self.play)
+        Pause = Button(window,text = 'Pause',  width = 10, font = ('Times', 10), command = self.pause)
+        Stop = Button(window ,text = 'Stop',  width = 10, font = ('Times', 10), command = self.stop)
+        Load.place(x=0,y=20);Play.place(x=110,y=20);Pause.place(x=220,y=20);Stop.place(x=110,y=60)
+        self.music_file = False
+        self.playing_state = False
+
+    def load(self):
+        self.music_file = filedialog.askopenfilename()
+
+    def play(self):
+        if self.music_file:
+            mixer.init()
+            mixer.music.load(self.music_file)
+            mixer.music.play()
+
+    def pause(self):
+        if not self.playing_state:
+            mixer.music.pause()
+            self.playing_state=True
+        else:
+            mixer.music.unpause()
+            self.playing_state = False
+    def stop(self):
+        mixer.music.stop()
+root = Tk()
+app= MusicPlayer(root)
+root.mainloop()
+'''
+
+
+
+'''
+import datetime
+import time
+import os
+import pygame
+
+class Track:
+    def __init__(self, name, duration, singer, year):
+        self.name = name
+        self.duration = duration
+        self.singer = singer
+        self.year = year
+        self.filepath = f'music/{self.name}.mp3'
+        self.playing = False
+        self.played_time = 0
+        self.seconds_dur = self.seconds(duration)
+
+    @staticmethod
+    def seconds(duration):
+        return int(duration.split(':')[0]) * 60 + int(duration.split(':')[1])
+
+    def __repr__(self):
+        return f"{self.name} - {self.singer} ({self.year})"
+
+
+class Album:
+    album_tuple = {}
+
+    def album_info(self, filename):
+        self.album_tuple = {}
+        with open(filename, 'r') as file:
+            for line in file:
+                name, duration, artist, year = line.strip().split(' - ')
+                track = Track(name, duration, artist, year)
+                self.album_tuple[name] = track
+
+    def play(self, name):
+        if name in self.album_tuple:
+            track = self.album_tuple[name]
+
+            if track.playing == False:
+                print(f'Starting to play composition {track.name} by {track.singer}')
+                track.playing = True
+                pygame.mixer.init()
+                pygame.mixer.music.load(track.filepath)
+                pygame.mixer.music.play()
+            else:
+                print(f'Composition {track.name} is already playing. Didn\'t you hear it? :)')
+
+
+            if track.playing and track.played_time < track.seconds_dur:
+                time.sleep(1)
+                track.played_time += 1
+                print(f'Playing some music for... {track.played_time} seconds')
+
+            else:
+                print(f'Composition {track.name} is now over!')
+                track.playing = False
+                track.played_time = 0
+                pygame.mixer.music.stop()
+
+        else:
+            print(f'Track {name} not found in the album :(')
+
+
+    def pause(self, name):
+        if name in self.album_tuple:
+            track = self.album_tuple[name]
+
+            if track.playing:
+                print(f'Pausing {track.name}')
+                track.playing = False
+                pygame.mixer.music.pause()
+            else:
+                print(f'Composition {track.name} is not currently playing.')
+        else:
+            print(f'Track {name} not found in the album :(')
+
+
+    def resume(self, name):
+        if name in self.album_tuple:
+            track = self.album_tuple[name]
+            if not track.playing:
+                print(f'Resuming {track.name}')
+                track.playing = True
+                pygame.mixer.music.unpause()
+
+            else:
+                print(f'Composition {track.name} is already playing. Don\'t try to trick my code! :)')
+
+    def stop(self, name):
+        if name in self.album_tuple:
+            track = self.album_tuple[name]
+
+            if track.playing:
+                print(f'Stopping {track.name}')
+                track.playing = False
+                pygame.mixer.music.stop()
+                #track.played_time = 0
+            else:
+                print(f'Composition {track.name} is not currently playing.')
+        else:
+            print(f'Track {name} not found in the album :(')
+
 
 album = Album()
 album.album_info('music.txt')
-album.play('stairway to heaven')
-time.sleep(5)
-album.pause('stairway to heaven')
+
+
+album.play('aura')
+#time.sleep(5)
+album.pause('aura')
 time.sleep(2)
-album.resume('tangled up in blue')
+album.resume('aura')
+
+
+
+from mutagen.mp3 import MP3
+audio = MP3("example.mp3")
+print(audio.info.length)
+'''
+
+
+
+evening
+'''
+import datetime
+import time
+import os
+import pygame
+
+class Track:
+    def __init__(self, name, duration, singer, year):
+        self.name = name
+        self.duration = duration
+        self.singer = singer
+        self.year = year
+        self.filepath = f'music/{self.name}.mp3'
+        self.playing = False
+        self.played_time = 0
+        self.seconds_dur = self.seconds(duration)
+
+    @staticmethod
+    def seconds(duration):
+        return int(duration.split(':')[0]) * 60 + int(duration.split(':')[1])
+
+    def __repr__(self):
+        return f"{self.name} - {self.singer} ({self.year})"
+
+
+class Album:
+    album_tuple = {}
+
+    def album_info(self, filename):
+        self.album_tuple = {}
+        with open(filename, 'r') as file:
+            for line in file:
+                name, duration, artist, year = line.strip().split(' - ')
+                track = Track(name, duration, artist, year)
+                self.album_tuple[name] = track
+
+    def play(self, name):
+        if name in self.album_tuple:
+            track = self.album_tuple[name]
+
+            if track.playing == False:
+                print(f'Starting to play composition {track.name} by {track.singer}')
+                track.playing = True
+                pygame.mixer.init()
+                pygame.mixer.music.load(track.filepath)
+                pygame.mixer.music.play()
+            elif track.playing == 'flag':
+                track.playing = True
+                pygame.mixer.music.play(start=track.played_time)
+            else:
+                print(f'Composition {track.name} is already playing. Didn\'t you hear it? :)')
+
+
+            for i in range(tiime):
+                if track.played_time < track.seconds_dur:
+                    time.sleep(1)
+                    track.played_time += 1
+                    print(f'Playing some music for... {track.played_time} seconds')
+                else:
+                    print(f'Composition {track.name} is now over!')
+                    track.playing = False
+                    track.played_time = 0
+                    pygame.mixer.music.stop()
+
+        else:
+            print(f'Track {name} not found in the album :(')
+
+
+    def pause(self, name):
+        if name in self.album_tuple:
+            track = self.album_tuple[name]
+
+            if track.playing:
+                print(f'Pausing {track.name}')
+                track.playing = False
+                pygame.mixer.music.pause()
+            else:
+                print(f'Composition {track.name} is not currently playing.')
+        else:
+            print(f'Track {name} not found in the album :(')
+
+
+    def resume(self, name):
+        if name in self.album_tuple:
+            track = self.album_tuple[name]
+            if not track.playing:
+                print(f'Resuming {track.name}')
+                track.playing = 'flag'
+                pygame.mixer.unpause()
+                #pygame.mixer.music.play(start=track.played_time)
+                Album.play(self, name)
+                #pygame.mixer.music.unpause()
+
+            else:
+                print(f'Composition {track.name} is already playing. Don\'t try to trick my code! :)')
+
+    def stop(self, name):
+        if name in self.album_tuple:
+            track = self.album_tuple[name]
+
+            if track.playing:
+                print(f'Stopping {track.name}')
+                track.playing = False
+                pygame.mixer.music.stop()
+                #track.played_time = 0
+            else:
+                print(f'Composition {track.name} is not currently playing.')
+        else:
+            print(f'Track {name} not found in the album :(')
+
+
+album = Album()
+album.album_info('music.txt')
+
+tiime = int(input('for what time u want a track playing '))
+album.play('aura')
+time.sleep(tiime)
+album.pause('aura')
+time.sleep(2)
+tiime = int(input('for what time u want a track playing '))
+album.resume('aura')
+'''
+
