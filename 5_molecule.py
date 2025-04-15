@@ -1,78 +1,67 @@
-import pandas as pd
+import tkinter
 import random
 
-
-class Schedule:
-    def __init__(self, group_number, students):
-        self.group_number = group_number
-        self.students = students
-        self.week_schedule = {'Понедельник': ['', '', '', '', '', ''], 'Вторник': ['', '', '', '', '', ''],
-                              'Среда': ['', '', '', '', '', ''], 'Четверг': ['', '', '', '', '', ''],
-                              'Пятница': ['', '', '', '', '', ''], 'Суббота': ['', '', '', '', '', '']}
-
-    def create_schedule(self):
-        our_lessons = Lesson.all_lessons
-        random.shuffle(our_lessons)
-        our_rooms = Classrooms.rooms
-
-        counter = 0
-        for elem in our_lessons:
-            for i in range(6):
-                if counter != 0:
-                    counter = 0
-                    break
-
-                for key in self.week_schedule:
-                    if counter != 0:
-                        break
-                    if self.week_schedule[key][i] == '':
-                        random.shuffle(our_rooms)
-                        for room in our_rooms:
-                            if Classrooms.rooms_availability[room] >= self.students:
-                                self.week_schedule[key][i] = f'{elem} ауд. {room}'
-                                counter += 1
-                                break
-
-    def show_schedule(self):
-        df = pd.DataFrame(self.week_schedule)
-        df.index += 1
-        with open('schedule.xlsx', 'w', encoding='utf-8') as f:
-            df.to_excel('schedule.xlsx')
+tk = tkinter.Tk()
+c = tkinter.Canvas(tk, width=500, height=500, bg='white')
+c.pack()
 
 
-class Lesson:
-    all_lessons = []
+class Molecule:
+    x_dir = 15
+    y_dir = 5
 
-    def __init__(self, title, teacher, l_type):
-        self.title = title
-        self.teacher = teacher
-        self.l_type = l_type
+    def __init__(self, color, radius, speed):
+        self.color = color
+        self.radius = radius
+        self.speed = speed
+        x_start = random.randint(10, 450)
+        y_start = x_start
+        self.object = c.create_oval(x_start, y_start, radius + x_start, radius + y_start, fill=color)
 
-    def __repr__(self):
-        return f'{self.title} {self.teacher} {self.l_type}'
+    def move_molecule(self):
+        x1, y1, x2, y2 = c.coords(self.object)
+        if x1 <= 0 or x2 >= 500:
+            Molecule.x_dir *= -1
+        if y1 <= 0 or y2 >= 500:
+            Molecule.y_dir *= -1
 
-    @classmethod
-    def upload(cls, file):
-        with open(file, 'r', encoding='utf-8') as f:
-            for line in f:
-                title, teacher, l_type = line.strip().split('; ')
-                cls.all_lessons.append(Lesson(title, teacher, l_type))
+        c.move(self.object, Molecule.x_dir, Molecule.y_dir)
 
-
-class Classrooms:
-    rooms = []
-    rooms_availability = {}
-
-    def __init__(self, file):
-        with open(file, 'r', encoding='utf-8') as f:
-            for line in f:
-                room, capacity = line.split('; ')
-                Classrooms.rooms.append(room)
-                Classrooms.rooms_availability[room] = int(capacity)
+        c.after(self.speed, self.move_molecule)
 
 
-auditorium = Classrooms('classrooms.txt')
-Lesson.upload('lessons.txt')
-our_schedule = Schedule(22704, 30)
-our_schedule.create_schedule()
-our_schedule.show_schedule()
+molecule1 = Molecule('light blue', 60, 100)
+molecule1.move_molecule()
+molecule2 = Molecule('yellow', 50, 60)
+molecule2.move_molecule()
+molecule3 = Molecule('pink', 40, 20)
+molecule3.move_molecule()
+molecule4 = Molecule('purple', 50, 30)
+molecule4.move_molecule()
+molecule5 = Molecule('green', 60, 200)
+molecule5.move_molecule()
+
+
+tkinter.mainloop()
+
+'''
+import random
+from tkinter import *
+
+root = Tk()
+c = Canvas(width=500, height=500, bg='white')
+
+
+class Molecule:
+    def __init__(self, colour, radius, speed, x_cord=0, y_cord=0):
+        self.__colour = colour
+        self.__radius = radius
+        self.__speed = speed
+        #rewrite random
+        x_cord = random.randint(10, 100)
+        y_cord = x_cord
+        self.item = c.create_oval(x_cord, y_cord, radius + x_cord, radius + y_cord, fill)
+
+    def movement(self):
+        self.item
+'''

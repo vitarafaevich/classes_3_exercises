@@ -27,9 +27,6 @@ class Classes:
             mins = (i*60+duration%60)
             cls.timing_tuple[i] = [9 + ((i*60+duration)//60) + ':' + str(mins)]
 
-
-
-
     @classmethod
     def data(cls, filename):
         with open(filename, 'r', encoding='utf-8') as file:
@@ -37,7 +34,6 @@ class Classes:
                 lesson, professor, name = line.strip().split(' ; ')
                 #i'm not sure
                 cls.classes_list.append(cls(lesson, professor, name))
-
 
 
 class Information:
