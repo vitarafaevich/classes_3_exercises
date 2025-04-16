@@ -1,43 +1,56 @@
-import math
-
-
-class Schedule:
-    def __init__(self, day, group, classroom, lesson, num, type, teacher):
-        self.__day = day
-        self.__group = group
-
-
-class Classes:
-    classes_list = []
-    timing_tuple = {}
-
-    def __init__(self, lesson, professor, name, num_cl):
-        self.num_class = lesson
-        self.professor = professor
-        self.class_name = name
-        self.num_cl = num_cl
-
-    #to write normally with datetime
-    @classmethod
-    def timing(cls):
-        for i in range (1, (math.ceil((((24-9)*60)/110)/60))+1):
-            duration = 110
-            start_time = 9
-
-            mins = (i*60+duration%60)
-            cls.timing_tuple[i] = [9 + ((i*60+duration)//60) + ':' + str(mins)]
-
-    @classmethod
-    def data(cls, filename):
-        with open(filename, 'r', encoding='utf-8') as file:
-            for line in file:
-                lesson, professor, name = line.strip().split(' ; ')
-                #i'm not sure
-                cls.classes_list.append(cls(lesson, professor, name))
+#day - group - lesson_num - auditory - lesson_type - lesson_name - professor
 
 
 class Information:
-    def __init__(self, day, group):
-        self.__day = day
-        self.__group = group
+    """
+    Class representing schedule information
+    """
+    def __init__(self, day, group, lesson_num, auditory, lesson_type, lesson_name, professor):
+        self.day = day
+        self.group = group
+        self.lesson_num = lesson_num
+        self.auditory = auditory
+        self.lesson_type = lesson_type
+        self.lesson_name = lesson_name
+        self.professor = professor
 
+    def __repr__(self):
+        return f'{self.day} {self.group} {self.lesson_num} {self.auditory} {self.lesson_type} {self.lesson_name} {self.professor}'
+
+
+class Schedule:
+    """
+    Class representing a schedule
+    """
+    all_lessons = {}
+
+    @classmethod
+    def upload(cls, filename):
+        """
+        Method resume(self, name): to resume (continue) the composition playback
+        :param filename: the name of the file where data is stored
+        """
+        with open(filename, 'r', encoding='utf-8') as f:
+            for line in f:
+                if line.strip():
+                    day, group, lesson_num, auditory, lesson_type, lesson_name, professor = line.strip().split(
+                        ' ; ')
+                    info = Information(day, group, lesson_num, auditory, lesson_type, lesson_name, professor)
+                    cls.all_lessons[day] = [info[1:]]
+
+    def show(self):
+        """
+        Method show(self): to show the schedule for a week
+        """
+        for day in self.all_lessons:
+            lessons = self.all_lessons[day]
+            print(f'Schedule for {day}:')
+            for lesson in lessons:
+                print(
+                    f'  {lesson.lesson_num}. {lesson.lesson_name} ({lesson.lesson_type}) - {lesson.auditory}, Professor: {lesson.professor}')
+            print()
+
+
+schedule = Schedule()
+schedule.upload('shedule.txt')
+schedule.show()

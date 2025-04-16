@@ -1,5 +1,6 @@
 import ean_13
 
+
 class Basket:
     """
     Class representing a marketplace basket
@@ -15,6 +16,10 @@ class Basket:
 
     @base.setter
     def base(self, new):
+        """
+        Method (self, new): to identify the current item in the basket
+        :param new: the current item in the basket itself
+        """
         if new[0:3] == 'rem':
             if new[3:] in Basket.all_stuff:
                 self.__base.remove(new[3:])
@@ -33,10 +38,7 @@ class Basket:
             for line in f:
                 name, code, info, price = line.strip().split('; ')
                 result = Product(name, code.strip(), info, price)
-                #calling the class and its attribute all_stuff. key - name of the product, value - other info. price has ind 4
                 cls.all_stuff[result.name] = [result.code, result.country, result.info, result.price]
-            #for item in Basket.all_stuff:
-                #print(item)
 
     def add_product(self, product):
         """

@@ -1,0 +1,16 @@
+Monday ; 23704 ; 4 ; 1001 ; seminar ; Sports ; Maneeva O.P.
+Monday ; 23704 ; 5 ; 4310 ; lecture ; Accounting ; Prishenko E.A.
+Tuesday ; 23704 ; 1 ; 4310 ; lecture ; Methods of Optimal Decisions ; Domojirov D.A.
+Tuesday ; 23704 ; 2 ; 3307 ; lecture ; Macroeconomics ; Tagaeva T.O.
+Tuesday ; 23704 ; 3 ; 4250 ; seminar ; English ; Suchinina I.A.
+Tuesday ; 23704 ; 4 ; 3307 ; lecture ; Financial Markets and Financial Institutes ; Bekareva D.A.
+Wednesday ; 23704 ; 1 ; 4316 ; lecture ; Programming ; Minak A.G.
+Wednesday ; 23704 ; 2 ; 4260 ; seminar ; Programming ; Minak A.G.
+Wednesday ; 23704 ; 3 ; 2261 ; seminar ; Math Statistics ; Gorushkin A.A.
+Wednesday ; 23704 ; 4 ; 3317 ; seminar ; Financial Markets and Financial Institutes ; Ivanova A.I.
+Thursday ; 23704 ; 1 ; 4250 ; seminar ; English ; Suchinina I.A.
+Thursday ; 23704 ; 2 ; 4256 ; seminar ; Methods of Optimal Decisions ; Ibragimov N.M.
+Thursday ; 23704 ; 3 ; 4238 ; seminar ; Macroeconomics ; Gorushkina E.A.
+Thursday ; 23704 ; 4 ; 1001 ; seminar ; Sports ; Maneeva O.P.
+Friday ; 23704 ; 1 ; 4316 ; seminar ; Math Statistics ; Gorushkin A.A.
+Friday ; 23704 ; 2 ; 3312 ; seminar ; Accounting ; Prishenko E.A.
