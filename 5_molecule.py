@@ -88,8 +88,8 @@ class Molecule:
         """
         return f'#{random.randint(0, 0xFFFFFF):06x}'
 
-
-molecules = [Molecule() for i in range(5)]
+num_molecules = random.randint(5, 30)
+molecules = [Molecule() for i in range(num_molecules)]
 
 for molecule in molecules:
     molecule.movement_guidance()
