@@ -104,9 +104,7 @@ class Album:
                 print(f'Resuming {track.name}')
                 track.playing = 'flag'
                 pygame.mixer.unpause()
-                #pygame.mixer.music.play(start=track.played_time)
                 Album.play(self, name)
-                #pygame.mixer.music.unpause()
 
             else:
                 print(f'Composition {track.name} is already playing. Don\'t try to trick my code! :)')
@@ -135,9 +133,9 @@ album.album_info('music.txt')
 
 tiime = int(input('for what time u want a track playing '))
 album.play('here_comes_the_sun')
-time.sleep(tiime)
+#time.sleep(tiime)
 album.pause('here_comes_the_sun')
-time.sleep(2)
+#time.sleep(2)
 tiime = int(input('for what time u want a track playing '))
 album.resume('here_comes_the_sun')
 

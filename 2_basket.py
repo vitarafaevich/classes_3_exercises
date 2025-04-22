@@ -92,7 +92,8 @@ class Product:
         self.__code = code
         self.__info = info
         self.__price = price
-        #ean_13 - file name; dict_ean - dictionary with ean codes ('code': 'country')
+
+        # ean_13 - file name; dict_ean - dictionary with ean codes ('code': 'country')
         if code[0:3] in ean_13.dict_ean:
             self.country = ean_13.dict_ean[code[0:3]]
         else:

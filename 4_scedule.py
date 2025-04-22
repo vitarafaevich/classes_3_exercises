@@ -1,6 +1,3 @@
-#day - group - lesson_num - auditory - lesson_type - lesson_name - professor
-
-
 class Information:
     """
     Class representing schedule information

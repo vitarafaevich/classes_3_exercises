@@ -109,5 +109,4 @@ ean_prefixes = [
     "999"
 ]
 
-
 dict_ean = {key: value for key, value in zip(ean_prefixes, countries)}
